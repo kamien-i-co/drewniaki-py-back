@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'debug_toolbar',
     'jazzmin',
+    'graphene_django',
+    'graphql_auth',
 
     #admin
     'django.contrib.admin',
@@ -84,13 +86,26 @@ TEMPLATES = [
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'drewniaki',
+        'USER': 'admin',
+        'PASSWORD': 'qazwsx',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
+GRAPHENE = {
+    "SCHEMA": "config.schema.schema"
+}
 # PASSWORDS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
