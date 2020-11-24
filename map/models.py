@@ -4,7 +4,12 @@ from django.contrib.postgres.fields import ArrayField
 class Marker(models.Model):
     lat = models.FloatField(blank=True)
     lon = models.FloatField(blank=True)
-    monument = models.ForeignKey('Monument', related_name="markers", on_delete=models.CASCADE)
+    monument = models.OneToOneField(
+        'Monument',
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name='marker'
+    )
 
 class Photo(models.Model):
     name = models.TextField(blank=True)
@@ -26,3 +31,4 @@ class Monument(models.Model):
     name = models.TextField(blank=True)
     state= models.CharField(blank=True, max_length=32, choices=CHOICES)
     description = models.TextField(blank=True)
+   
